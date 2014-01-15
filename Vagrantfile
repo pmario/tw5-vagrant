@@ -8,7 +8,8 @@
 PRIVATE_IP = "192.168.5.10"
 
 # if you add your repository here, it will be possible to "git push origin .." changes
-TW5_ORIGIN = "https://github.com/pmario/TiddlyWiki5.git";
+# eg: TW5_ORIGIN = "https://github.com/pmario/TiddlyWiki5.git";
+TW5_ORIGIN = "";
 
 # where to get the "base box"
 BOX_NAME = ENV['BOX_NAME'] || "raring"
