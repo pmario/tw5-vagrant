@@ -1,0 +1,13 @@
+#!/bin/sh
+
+# hacky check for mounted tweb directory. TODO fix this
+while [ ! -d /vagrant/TiddlyWiki5 ]; do sleep 1; done
+cd /vagrant/TiddlyWiki5
+
+# exec setuidgid vagrant ./serve.sh a b 0.0.0.0
+exec setuidgid vagrant \
+    node ./tiddlywiki.js \
+	editions/clientserver \
+	--verbose \
+	--server 8080 $:/core/save/all text/plain text/html dev dev 0.0.0.0 \
+	|| exit 1

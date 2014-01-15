@@ -1,0 +1,15 @@
+#!/bin/sh
+# this file was automatically created at vagrant setup time
+
+PATH=/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin
+
+exec 0</dev/null 1>/dev/null 2>/dev/null
+
+svc -dx /service/* /service/*/log
+
+ln -fs /proc/$$/cmdline /var/log/svscan
+
+exec csh -cf '
+    exec env - PATH="$PATH" svscan /service |& \
+    exec env - PATH="$PATH" argv0 readproctitle "service errors:\
+" ................................................................................................................................................................................................................................................................................................................................................................................................................'
