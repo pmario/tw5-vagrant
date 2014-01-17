@@ -23,7 +23,7 @@ TiddlyWiki5 - Vagrant
 
 
 ```
-# needed for tweb-at-home vagrant setup
+# needed for TiddlyWiki vagrant setup
 192.168.5.10	tw5.local
 ```
 
@@ -34,14 +34,14 @@ TiddlyWiki5 - Vagrant
  * extract the `Vagrantfile` and the `assets` folder to your instance directory
  * cd tw5-test
 
-### Start a TiddlyWeb Instance
+### Start a TiddlyWiki Instance
 
  * make sure you are at your instance directory.
  * `vagrant up`
  
  ... the first run will need several minutes
  
- * `vagrant reload` ... is needed to autostart the TiddlyWeb server
+ * `vagrant reload` ... is needed to autostart the TiddlyWiki server
 
 **click**: http://tw5.local:8080 ... to open the default TiddlyWiki<br />
 
