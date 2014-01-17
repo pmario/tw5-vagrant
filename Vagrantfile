@@ -118,7 +118,7 @@ Vagrant.configure("2") do |config|
 	
 	if START_SERVER_ON_BOOT == "no"
 		# if this file exists in the /service/tw directory, the autorun is not active
-		cmd = << "touch /service/tw/down"
+		cmd << " ; touch /service/tw/down"
 	end
 	
 	config.vm.provision :shell, :inline => cmd
@@ -133,8 +133,8 @@ Vagrant.configure("2") do |config|
 	# just some info for the user!
 	cmd = "echo ---- open http://#{PRIVATE_IP}:8080 in you browser!; " \
 			"echo ---- username:password = dev:dev; " \
-			"echo; " \
-			"echo; ---- see: https://github.com/pmario/tw5-vagrant for more information." \
+			"echo ;" \
+			"echo ---- see: https://github.com/pmario/tw5-vagrant for more information." ; \
 			"echo ---- have fun!; "
 	config.vm.provision :shell, :inline => cmd 
   end
