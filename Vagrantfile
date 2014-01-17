@@ -1,15 +1,21 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-# tw5 dev-env config: V 0.0.1 - 2013.12.28
+# tw5 dev-env config: V 0.0.2 - 2013.12.28
 # by: pmario
 
 # We need to create a private network, because of windows
 PRIVATE_IP = "192.168.5.10"
 
-# if you add your repository here, it will be possible to "git push origin .." changes
-# eg: TW5_ORIGIN = "https://github.com/pmario/TiddlyWiki5.git";
+# If you add your repository here, it will be possible to "git push origin .." changes
+# eg: TW5_ORIGIN = "https://github.com/YOUR-GITHUB-NAME/TiddlyWiki5.git";
+# If the parameter is empty, the "upstream" repository will be cloned. So you have no write access!
 TW5_ORIGIN = "";
+
+# This skript is to test TW5 with a nodejs server. So the server is automatically started!
+# If you don't like this behaviour, just set the parameter to "no".
+# START_SERVER_ON_BOOT = "no";
+START_SERVER_ON_BOOT = "yes";
 
 # where to get the "base box"
 BOX_NAME = ENV['BOX_NAME'] || "raring"
@@ -109,6 +115,12 @@ Vagrant.configure("2") do |config|
 	# root: symlink the instance service dir to daemon /service dir
 	cmd = "echo ---- link service dir; "\
 			"ln -s #{TW_SERVICE_DIR} /service/tw"
+	
+	if START_SERVER_ON_BOOT == "no"
+		# if this file exists in the /service/tw directory, the autorun is not active
+		cmd = << "touch /service/tw/down"
+	end
+	
 	config.vm.provision :shell, :inline => cmd
 
 	# root: add daemontools autostart line to rc.local
@@ -121,6 +133,8 @@ Vagrant.configure("2") do |config|
 	# just some info for the user!
 	cmd = "echo ---- open http://#{PRIVATE_IP}:8080 in you browser!; " \
 			"echo ---- username:password = dev:dev; " \
+			"echo; " \
+			"echo; ---- see: https://github.com/pmario/tw5-vagrant for more information." \
 			"echo ---- have fun!; "
 	config.vm.provision :shell, :inline => cmd 
   end
